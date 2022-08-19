@@ -1,7 +1,7 @@
 import  { login } from "../services/auth"
 import  { getInfo } from "../services/user"
 import { FomrLogin, PayloadFetchDataLogin } from "../utils/interface"
-import { setToken, setUser } from "../utils/token"
+import { clearToken, clearUser, setToken, setUser } from "../utils/token"
 
 const initialValue = {
 }
@@ -45,19 +45,21 @@ export const fetchLogin = (payload: PayloadFetchDataLogin) =>{
 //     }
 
 // }
+export const logoutAction = () =>{
+    clearToken()
+    clearUser()
+    return ( {type: 'user/logout'})
+}
 
 
-
-export const authReducer = (state = {}, action) => {
+export const authReducer = (state = {}, action:any) => {
     switch(action.type){
         case 'auth/setUser':
-            console.log("set user")
             return{
                 ...state,
                 user: action.payload
             }
         case 'user/logout':
-            console.log("ẻtwẻtywẻ")
             return{
                 ...state,
                 user: null

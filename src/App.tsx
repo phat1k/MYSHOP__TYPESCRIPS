@@ -25,6 +25,7 @@ import Providerr from "./components/Provider";
 import Product from "./pages/product"
 import Contact from "./pages/contact";
 import { PRODUCT_CATEGORY_PATH, PRODUCT_PATH } from "./constants/path";
+import AccountLayout from "./pages/profile";
 // import Wishlist from "./pages/profile"
 
 
@@ -46,20 +47,24 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path={PRODUCT_PATH} element={<Product />} />
             <Route path={PRODUCT_CATEGORY_PATH} element={<Product />} />
+            {/* <Route path="/profile" element={<AccountLayout />} /> */}
+
+            
             {/* <Route path="/profile" element={<Wishlist />} /> */}
 
-            {/* <Route
+            <Route
               path="/profile"
               element={
                 <Providerr>
-                  <ProfileLayout submitLogout={submitLogout} login={login} />
+                  {/* <ProfileLayout submitLogout={submitLogout} login={login} /> */}
+                  <AccountLayout />
                 </Providerr>
               }
             >
-              <Route path="order" element={<Order />} />
+              {/* <Route path="order" element={<Order />} />
               <Route path="order/:id" element={<OrderDetail />} />
-              <Route index element={<Info />} />
-            </Route> */}
+              <Route index element={<Info />} /> */}
+            </Route>
           </Route>
         </Routes>
       </Provider>

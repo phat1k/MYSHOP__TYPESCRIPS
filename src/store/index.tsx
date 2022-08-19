@@ -1,5 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import authReducer from "./authReducer";
 import OpenCardReducer from "./openReducer";
+import userReducer from "./userReducer";
 // import thunk from "redux-thunk";
 
 // const conposeEnhencers = window.__REDUX_DEVTOOLS_EXTENSION__ || compose
@@ -30,6 +32,8 @@ const thunkk = (store:any) => (next:any) => (action:any) => {
 export let store = createStore(
   combineReducers<any>({
     OpenRe: OpenCardReducer,
+    Auth: authReducer,
+    UserRe: userReducer
   }),
   applyMiddleware(
     // logging,
