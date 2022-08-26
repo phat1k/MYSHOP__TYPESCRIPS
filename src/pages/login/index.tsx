@@ -44,34 +44,34 @@ export const Login = () => {
     //    console.log("thanh coong");
     //    localStorage.setItem("token", "accessToken");
     //  }
-    if(Object.keys(errorObj).length === 0){
-      try{
-        // const token = await authServicee.login(payload.data)
-        const token = await login(formLogin)
-        console.log('errorLoginMessage', errorLoginMessage)
-        console.log(`token`, token)
-        if(token.error){
-          return setErrorLoginMessage(token.message)
-        }
-        if(token.data){
-            setToken(token.data)
-            const user = await getInfo()
-            setUser(user.data)
-            dispatch({
-                type:"auth/setUser",
-                payload: user.data
-            })
-
-
-            // payload.success(user.data)
-        
+      if(Object.keys(errorObj).length === 0){
+        try{
+          // const token = await authServicee.login(payload.data)
+          const token = await login(formLogin)
+          console.log('errorLoginMessage', errorLoginMessage)
+          console.log(`token`, token)
+          if(token.error){
+            return setErrorLoginMessage(token.message)
           }
-        
-    }catch(error){
-        setErrorLoginMessage(error.message)
-        console.log(error)
-    }
-    }
+          if(token.data){
+              setToken(token.data)
+              const user = await getInfo()
+              setUser(user.data)
+              dispatch({
+                  type:"auth/setUser",
+                  payload: user.data
+              })
+
+
+              // payload.success(user.data)
+          
+            }
+          
+        }catch(error){
+            setErrorLoginMessage(error.message)
+            console.log(error)
+        }
+      }
   }
   const token = localStorage.getItem("token")
   if (token) return <Navigate to="/product"/>

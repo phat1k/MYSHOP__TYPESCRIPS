@@ -1,15 +1,17 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { Navigate, unstable_HistoryRouter } from 'react-router-dom';
+import { getToken } from '../utils/token';
 
-
-const Providerr = ({children}) => {
-   let navigate = useNavigate();
+interface Child {
+  children:React.ReactNode
+}
+const Providerr:React.FC<Child>= ({children}) => {
+  let navigate = useNavigate();
   const checkToken = () => { 
-   const token = localStorage.getItem("token");
+   const token = getToken()
     if(!token){
-      navigate("/login", { replace: true });
-      console.log("aaaaaaaaaaa")
+      navigate("/register", { replace: true });
     }
    }
    React.useEffect(() => {

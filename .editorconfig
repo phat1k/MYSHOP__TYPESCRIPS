@@ -1,0 +1,25 @@
+root = true
+
+# Newline theo chuẩn Unix và luôn có dòng mới ở cuối file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Đối với các tập tin Python thì dùng 4 khoảng trắng
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Với các tập tin JavaScript thì dùng tab, không quy định size
+[*.js]
+indent_style = tab
+
+# Nhưng với các tập tin JavaScript trong thư mục lib thì dùng 2 khoảng trắng
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Đối với tập tin package.json hoặc .travis.yml thì dùng 2 khoảng trắng
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2

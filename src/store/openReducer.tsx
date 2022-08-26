@@ -9,7 +9,7 @@ interface UserStateRule{
 }
 interface ActionReducer {
   type: string,
-  payload: any,
+  payload: any
 
 }
 const initialValue: UserStateRule = {
@@ -47,32 +47,26 @@ function OpenCardReducer(state = initialValue, action: ActionReducer) {
         list: action.payload,
       };
     case "ADD_ITEM":
-      // let { listCard } = state;
-      // listCard.push(action.payload);
-      // localStorage.setItem("listCard", JSON.stringify(listCard))
-
-      // let { listCard } = state
-      // const indexx = list.findIndex((e) => e._id === action.payload)
-      // if(indexx >=0){
-
-
-        // if( (listCard?.findIndex(e => e._id === action.payload._id)) < 0){
-        //   listCard.push(action.payload);
-        // } 
-        // let listCard = action.payload
+      let { listCard } = state;
+        if( (listCard?.findIndex(e => e._id === action.payload._id)) < 0){
+          listCard.push(action.payload);
+        } else{
+           action.payload.quantity  =  action.payload.quantity + 1
+        } 
     return {
       ...state,
-      listCard : action.payload
+      listCard,
     };
     case "REMOVE_ITEMCARD":
-      // let listCardRemove = [...state.listCard]
-      // const indexx = listCardRemove.findIndex((e) => e._id === action.payload);
-      // if (indexx >= 0) {
-      //   listCardRemove.splice(indexx, 1);
-      // }
+      let listCardRemove = [...state.listCard]
+      const indexx = listCardRemove.findIndex((e) => e._id === action.payload);
+      if (indexx >= 0) {
+        listCardRemove.splice(indexx, 1);
+      }
     return {
       ...state,
-      listCard: action.payload
+      listCard: listCardRemove,
+      
     };
     case "REMOVE_ITEM":
       let { list } = state;

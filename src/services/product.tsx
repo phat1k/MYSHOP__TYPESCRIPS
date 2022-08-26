@@ -1,8 +1,16 @@
 import api from "../constants/api"
-
 export interface Product {
-    id: number,
-    name: string
+  name : string, 
+  real_price: number,
+  price :number, 
+  images: [
+      {
+      thumbnail_url:string,
+      }
+  ]
+  slug: string,
+  id: number,
+  _id:string,
 }
 export interface SearchResult<T> {
   data: T[];
@@ -34,18 +42,3 @@ export const getCategory = async ():Promise<CategoryData[]> => {
     const res: CategoryData[] = await api.get(`/categories`);
     return res;
   };
-
-
-// const productService = {
-//     getProduct(query = ''):Promise<any>{
-//         // return fetch (`${API}/product${query}`).then(res => res.json())
-//         // const res = await 
-//         return api.get(`/product${query}`)
-//     },
-//     getCategory(){
-
-//         return api.get('/categories')
-
-//     }
-// }
-// export default productService

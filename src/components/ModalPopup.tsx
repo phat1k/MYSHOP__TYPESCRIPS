@@ -23,14 +23,11 @@ const Container = styled.div`
   align-items:center;
 `
 
-export interface IdData{
-  id: string
-}
+export const ModalCard = ({id}:{id: string}) => {
+  let { list } = useSelector((store:any) => store.OpenRe)
 
-export const ModalCard:React.FC<IdData> = ({id}) => {
-  let { list } = useSelector(store => store.OpenRe)
   console.log('list', list._id)
-  const { visible } = useSelector((store) => store.OpenRe);
+  const { visible } = useSelector((store:any) => store.OpenRe);
     const dispatch = useDispatch();
     
 

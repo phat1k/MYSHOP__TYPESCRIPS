@@ -9,7 +9,7 @@ export const logoutAction = () =>{
     clearUser()
     return ( {type: 'user/logout'})
 }
-export default function userReducer(state = initialValue, action) {
+export default function userReducer(state = initialValue, action:any) {
     console.log(action.type)
     switch(action.type){
         case 'auth/setUser':

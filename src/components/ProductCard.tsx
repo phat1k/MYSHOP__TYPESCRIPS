@@ -5,6 +5,7 @@ import {currency} from "../utils/currency"
 import {message, Button} from 'antd'
 import { addWishlist } from "../services/profile"
 import { useDispatch, useSelector } from "react-redux"
+import { ActionTypes } from "@mui/base"
 // import { Button, Modal } from 'antd';
 
 interface Productt{
@@ -21,7 +22,7 @@ interface Productt{
         id: number,
         _id:string,
     }, 
-    onRemove: (_id: string)=> void
+    onRemove: (_id: string)=> void,
 }
 export interface ProductItem{
         name : string, 
@@ -30,8 +31,6 @@ export interface ProductItem{
         images: [
             {
             thumbnail_url:string,
-            small_url:string,
-            medium_url:string,
             }
         ]
         slug: string,
@@ -39,46 +38,29 @@ export interface ProductItem{
         _id:string,
 }
 
+// export const ProductCard: React.FC<Productt> = ({product, onRemove }) => {
+export const ProductCard = ({product, onRemove }: Productt) => {
 
-export const ProductCard: React.FC<Productt> = ({product, onRemove}) => {
-  const { name, real_price, price, images, slug, _id } = product
+    const { name, real_price, price, images, slug, _id } = product
     const dispatch = useDispatch()
-  const listCard = useSelector((store:any) => store.OpenRe.listCard);
-
-    const addWishlistt = async() => {
-        // dispatch({ type: "CLOSE_CARD" })}
-    // const res = await addWishlist(_id)
-    // message.success('Đã thêm sản phẩm vào danh sách yêu thích thành công ')
-    // console.log("thành công")
-  }
-const token =localStorage.getItem("token")
-const user = localStorage.getItem("user")
-  const removeItem = () => { 
-    if(token && user){
-        dispatch({
-            type:"OPEN_CARD"
-        })
-        onRemove(_id)
+    const listCard = useSelector((store:any) => store.OpenRe.listCard);
+    const token =localStorage.getItem("token")
+    const removeItem = () => { 
+        // if(token ){
+            dispatch({
+                type:"OPEN_CARD"
+            })
+            onRemove(_id)
+        // }
     }
-   
-   }
-//    const addItem = (_id) => { 
-//         dispatch({
-//             type:"OPEN_CARD"
-//         })
-//     }
    const addCard = (product:ProductItem) => { 
-    // localStorage.setItem("listCard", _id)
-      if( (listCard?.findIndex(e => e._id === product._id)) < 0){
-          listCard.push(product);
-        } 
-    dispatch({
-        type:"ADD_ITEM",
-        payload: listCard
-    })
-    dispatch({
-        type:"OPEN_CARDMODAL",
-    })
+        dispatch({
+            type:"ADD_ITEM",
+            payload: product
+        })
+        dispatch({
+            type:"OPEN_CARDMODAL",
+        })
     }
     return (
             <div className="col-6 col-md-4">
@@ -138,3 +120,48 @@ const user = localStorage.getItem("user")
     )
 }
 export default ProductCard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  xử lí add card ở component rồi dispatch cái listCard lên reducer
+{/* <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct" onClick={()=>addCard(product)}>
+const addCard = (product:ProductItem) => { 
+      if( (listCard?.findIndex(e => e._id === product._id)) < 0){
+          listCard.push(product);
+        } 
+        dispatch({
+            type:"ADD_ITEM",
+            payload: listCard
+        })
+        dispatch({
+            type:"OPEN_CARDMODAL",
+        })
+    }
+
+       case "ADD_ITEM":
+    return {
+      ...state,
+      listCard : action.payload
+    }; */}

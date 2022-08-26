@@ -2,10 +2,7 @@ import React from 'react'
 import {useQueryUrl} from "../hook/useQueryUrl"
 import {Link } from "react-router-dom"
 
-export interface PaginationnProps{
-    totalPage: number,
-}
-    const Paginationn: React.FC<PaginationnProps> = ({totalPage})=>{
+    const Paginationn = ({totalPage}:{totalPage: number})=>{
     const search = useQueryUrl()
     const currentPage = parseInt(search.get('page') || "1")
     console.log(`currentPage`, currentPage)

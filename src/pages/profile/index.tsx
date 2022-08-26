@@ -22,7 +22,7 @@ export default function AccountLayout() {
       dispatch(logoutAction())
     }
    const token = localStorage.getItem("token");
-    if(!user) return <Navigate to={AUTH_PATH}/>
+    if(!token) return <Navigate to={AUTH_PATH}/>
     return (
         <div>
         <nav className="py-5">
