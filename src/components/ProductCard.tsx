@@ -36,6 +36,7 @@ export interface ProductItem{
         slug: string,
         id: number,
         _id:string,
+        quantity:number
 }
 
 // export const ProductCard: React.FC<Productt> = ({product, onRemove }) => {
@@ -96,22 +97,16 @@ export const ProductCard = ({product, onRemove }: Productt) => {
                             </span>
                         </div>
                     </div>
-                    {/* Body */}
                     <div className="card-body px-0">
-                        {/* Category */}
                         <div className="font-size-xs">
                             <a className="text-muted" href="shop.html">Shoes</a>
                         </div>
-                        {/* Title */}
                         <div className="font-weight-bold">
                             <Link className="text-body" to={generatePath(PRODUCT_DETAIL_PATH, {slug})}>
-                                {/* Leather mid-heel Sandals */}
                                 {name}
                             </Link>
                         </div>
-                        {/* Price */}
                         <div className="font-weight-bold text-muted">
-                            {/* $129.00 */}
                             {currency(real_price)}
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, { cloneElement, useEffect, useState } from 'react'
+import React, { cloneElement, useContext, useEffect, useState } from 'react'
 import ProductsCard from "../../components/ProductCard"
 import Category from "../../components/Category"
 import { getProducts, Pagination } from "../../services/product"
@@ -11,8 +11,13 @@ import { debounce } from "lodash"
 import { useDispatch, useSelector } from 'react-redux'
 import ModalCard from '../../components/ModalPopup'
 import { SearchParams } from '../../components/SearchParams'
+import { useAuth } from '../../hook/authentication'
 
 export default function Shop() {
+  
+    const context = useAuth()
+    const con = context.token 
+    console.log('context', con)
     const { list } = useSelector((store) => store.OpenRe);
     const dispatch = useDispatch()
     const [id, setId] = useState<string>("")

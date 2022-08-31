@@ -1,15 +1,19 @@
 export const TOKEN_STORAGE_KEY = "token";
 export const USER_STORAGE_KEY = "user";
-
+interface TokenContext{
+  accessToken: string,
+  refreshToken: string,
+}
 export const setToken = (data) => {
   localStorage.setItem(TOKEN_STORAGE_KEY, JSON.stringify(data));
 };
 export const getToken = () => {
   let token = localStorage.getItem(TOKEN_STORAGE_KEY);
   if (token) {
-    token = JSON.parse(token);
-  }
 
+    
+    token = JSON.parse(token) ;
+  }
   return token;
 };
 

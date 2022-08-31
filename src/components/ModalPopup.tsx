@@ -33,7 +33,7 @@ export const ModalCard = ({id}:{id: string}) => {
 
     const removeItem = () => {
       dispatch({
-        type:"REMOVE_ITEM",
+        type:"REMOVE_LISTITEM",
         payload: id
       })
       dispatch({ type: "CLOSE_CARD" })

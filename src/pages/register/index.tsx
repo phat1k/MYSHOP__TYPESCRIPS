@@ -77,13 +77,10 @@ export default function LoginCrud() {
     }
   };
   const token = getToken()
-   const ContextAuthh = createContext({
-    token
-   })
-  
-  if(token) return <Navigate to="/"/>
+  if(token) return <Navigate to="/product"/>
   return (
     <Container>
+      {errorLoginMessage && <p>{errorLoginMessage}</p>}
     <form onSubmit={handleSubmit(onSubmit)}>
       <Item>
         <Label>Email</Label>

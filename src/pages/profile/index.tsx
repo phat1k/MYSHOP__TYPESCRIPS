@@ -14,7 +14,7 @@ import { logoutAction } from '../../store/authReducer'
 
 export default function AccountLayout() {
     const { user } = useSelector(store => store.UserRe  )
-
+  
     const dispatch = useDispatch()
     const onLogout = (ev) =>{
       console.log(`adnaodig`)

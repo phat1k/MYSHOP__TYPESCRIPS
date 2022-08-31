@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../hook/authentication";
 import {
-  Category,
+  CategoryData,
   Pagination,
   Product,
 } from "../../services/product";
@@ -10,7 +10,7 @@ import { getProducts, getCategory } from "../../services/product";
 export const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [paginate, setPaginate] = useState<Pagination>();
-  const [category, setCategory] = useState<Category[]>();
+  const [category, setCategory] = useState<CategoryData[]>();
   const context = useAuth()
   console.log('context', context)
   const fetchData = async () => {
