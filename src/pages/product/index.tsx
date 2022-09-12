@@ -1,12 +1,10 @@
-import React, { cloneElement, useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductsCard from "../../components/ProductCard"
 import Category from "../../components/Category"
 import { getProducts, Pagination } from "../../services/product"
 import Paginationn from "../../components/Pagination"
 import { useQueryUrl } from '../../hook/useQueryUrl'
-import axios from 'axios'
-import api from "../../constants/api"
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { debounce } from "lodash"
 import { useDispatch, useSelector } from 'react-redux'
 import ModalCard from '../../components/ModalPopup'
@@ -14,9 +12,8 @@ import { SearchParams } from '../../components/SearchParams'
 import { useAuth } from '../../hook/authentication'
 
 export default function Shop() {
-  
     const context = useAuth()
-    const con = context.token 
+    const con = context
     console.log('context', con)
     const { list } = useSelector((store) => store.OpenRe);
     const dispatch = useDispatch()
@@ -35,7 +32,7 @@ export default function Shop() {
         const res = await getProducts(`?page=${currentPage}${category ? `&categories=${category}` : ''}${search ? `&name=${search}` : ''}`);
         setPaginate(res.paginate)
         const listProduct = res.data
-        for(let i=0; i<listProduct.length; i++){
+        for (let i = 0; i < listProduct.length; i++) {
             const obj1 = { quantity: 1 };
             const obj = Object.assign(listProduct[i], obj1)
         }
@@ -82,7 +79,7 @@ export default function Shop() {
                                 {/*/////////////////////////////////Search//////////////////////////////////// */}
                                 <SearchParams
                                     onChange={(ev) => debouncing(ev.target.value)}
-                                    searchValue={searchValue}/>
+                                    searchValue={searchValue} />
                                 {/*/////////////////////////////////Products//////////////////////////////////// */}
                                 <div className="row">
                                     {list && list.map(e => <ProductsCard key={e.id} product={e} onRemove={(_id) => onRemove(_id)} />)}

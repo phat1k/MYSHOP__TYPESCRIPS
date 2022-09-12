@@ -1,22 +1,26 @@
 
 // const list = JSON.parse(localStorage.getItem("listProdct")) || [];
+
+import { ProductItem } from "../components/ProductCard";
+
 // const listCard = JSON.parse(localStorage.getItem("listCard")) || [];
 interface UserStateRule {
   visible: boolean,
   opencard: boolean,
-  list: [],
-  listCard: [],
+  list: ProductItem[],
+  listCard: ProductItem[]
+  listCardRemoveCard: ProductItem[]
 }
 interface ActionReducer {
   type: string,
   payload: any
-
 }
 const initialValue: UserStateRule = {
   visible: false,
   opencard: false,
   list: [],
   listCard: [],
+  listCardRemoveCard: []
 };
 
 function OpenCardReducer(state = initialValue, action: ActionReducer) {
@@ -47,7 +51,7 @@ function OpenCardReducer(state = initialValue, action: ActionReducer) {
         list: action.payload,
       };
     case "DECREASE_ITEM":
-      let listCardRemoveCard = [...state.listCard]
+      const listCardRemoveCard = [...state.listCard]
       const indexRemove = listCardRemoveCard?.findIndex(e => e._id === action.payload);
       listCardRemoveCard[indexRemove].quantity = listCardRemoveCard[indexRemove].quantity - 1
       if (indexRemove >= 0 && listCardRemoveCard[indexRemove].quantity <= 0) {
@@ -55,7 +59,7 @@ function OpenCardReducer(state = initialValue, action: ActionReducer) {
       }
       return {
         ...state,
-        listCard:listCardRemoveCard
+        listCard: listCardRemoveCard
       };
     case "INCREASE_ITEM":
       let listCardd = [...state.listCard];
@@ -72,7 +76,6 @@ function OpenCardReducer(state = initialValue, action: ActionReducer) {
       } else {
         action.payload.quantity = action.payload.quantity + 1
       }
-
       return {
         ...state,
         listCard,

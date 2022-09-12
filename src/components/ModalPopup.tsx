@@ -23,33 +23,29 @@ const Container = styled.div`
   align-items:center;
 `
 
-export const ModalCard = ({id}:{id: string}) => {
-  let { list } = useSelector((store:any) => store.OpenRe)
-
-  console.log('list', list._id)
-  const { visible } = useSelector((store:any) => store.OpenRe);
+export const ModalCard = ({ id }: { id: string }) => {
+    let { list } = useSelector((store: any) => store.OpenRe)
+    console.log('list', list._id)
+    const { visible } = useSelector((store: any) => store.OpenRe);
     const dispatch = useDispatch();
-    
-
     const removeItem = () => {
-      dispatch({
-        type:"REMOVE_LISTITEM",
-        payload: id
-      })
-      dispatch({ type: "CLOSE_CARD" })
-      }
-      
+        dispatch({
+            type: "REMOVE_LISTITEM",
+            payload: id
+        })
+        dispatch({ type: "CLOSE_CARD" })
+    }
 
-  return (
-      <Modal title="Basic Modal" visible={visible}  footer={null} onCancel={() => dispatch({ type: "CLOSE_CARD" })}>
-        <Container className="container__button">
-          {/* {list && list.map(e=> <ProductsCard key={e} product={e}/>)} */}
+    return (
+        <Modal title="Basic Modal" visible={visible} footer={null} onCancel={() => dispatch({ type: "CLOSE_CARD" })}>
+            <Container className="container__button">
+                {/* {list && list.map(e=> <ProductsCard key={e} product={e}/>)} */}
 
-          <ButtonStyle onClick={removeItem}>confirm</ButtonStyle><br />
-          <ButtonStyle>cancel</ButtonStyle>
-        </Container>
+                <ButtonStyle onClick={removeItem}>confirm</ButtonStyle><br />
+                <ButtonStyle>cancel</ButtonStyle>
+            </Container>
 
-    </Modal>
-  );
+        </Modal>
+    );
 }
 export default ModalCard

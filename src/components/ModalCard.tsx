@@ -2,8 +2,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Drawer } from "antd";
 import { currency } from '../utils/currency';
-import { ProductItem } from './ProductCard';
+import { ProductItem, Productt } from './ProductCard';
 import styled from 'styled-components';
+import { ItemCard } from './ItemCard';
 
 const TotalPrice = styled.p`
   font-weight: bold;
@@ -14,24 +15,21 @@ export const ModalCard = () => {
   const dispatch = useDispatch();
   const { opencard } = useSelector((store) => store.OpenRe);
   const listCard = useSelector((store) => store.OpenRe.listCard);
-  const removeItemCard = (_id: string) => {
+  const onRemove = (_id: string) => {
     dispatch({
       type: "REMOVE_ITEM_MODALCARD",
       payload: _id
     })
   }
 
-  const increase = (_id: string) => {
+  const increaseItem = (_id: string) => {
     dispatch({
       type: "INCREASE_ITEM",
       payload: _id
     })
   }
-  const decrease = (_id: string) => {
-    // const indexRemove = listCard.findIndex((e) => e._id === _id);
-    // listCard[indexRemove].quantity = listCard[indexRemove].quantity - 1
-    // console.log('firstvvvvvvvvvvvvvvvvvvv', listCard[indexRemove].quantity)
-    // console.log('firstccccccccccccc', listCard)
+
+  const decreaseItem = (_id: string) => {
     dispatch({
       type: "DECREASE_ITEM",
       payload: _id
@@ -51,27 +49,21 @@ export const ModalCard = () => {
       visible={opencard}
     >
       <h2>sản phẩm yêu thít</h2>
-      {
+      {/* {
         listCard && listCard.map((product: ProductItem) => (
           <div className="card mb-7">
-            {/* Image */}
             <div className="card-img">
-              {/* Action */}
               <button className="btn btn-xs btn-circle btn-white-primary card-action card-action-right" onClick={() => removeItemCard(product._id)}>
                 <i className="fe fe-x" />
               </button>
-              {/* Badge */}
               <span className="badge badge-dark card-badge card-badge-left text-uppercase">
                 Sale
               </span>
-              {/* Button */}
               <button className="btn btn-xs btn-block btn-dark card-btn" data-toggle="modal" data-target="#modalProduct">
                 <i className="fe fe-eye mr-2 mb-1" /> Quick View
               </button>
-              {/* Image */}
               <img className="card-img-top" src={product.images?.[0]?.thumbnail_url} alt="..." />
             </div>
-            {/* Body */}
             <div className="card-body font-weight-bold text-center">
               <a className="text-body" href="product.html">{product.name}</a> <br />
               <span>
@@ -84,6 +76,12 @@ export const ModalCard = () => {
             </div>
           </div>
         ))
+      } */}
+      {
+        listCard && listCard.map(e => <ItemCard key={e.id} product={e}
+          onRemove={(_id) => onRemove(_id)}
+          decreaseItem={(_id) => decreaseItem(_id)} 
+          increaseItem={(_id) => increaseItem(_id)}/>)
       }
       <p>tổng số lượng sản phẩm {total}</p>
       <TotalPrice>Tổng giá tiền:  {currency(totalPrice)}</TotalPrice>

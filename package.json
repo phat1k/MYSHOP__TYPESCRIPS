@@ -19,6 +19,7 @@
     "editorconfig": "^0.15.3",
     "lodash": "^4.17.21",
     "node-sass": "^7.0.1",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",

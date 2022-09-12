@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from "react";
 
-// interface Children {
-//     IsOpenSearchModal: boolean
-// }
+interface Children {
+    accessToken: boolean,
+}
 export const ContextAuth = createContext({})
      
 
-export const GlobalStateProvider = ({children}) =>{
+export const GlobalStateProvider = ({children}:{children:React.ReactNode}) =>{
     return <ContextAuth.Provider value={{a:1}}>{children}</ContextAuth.Provider>
 }
 
