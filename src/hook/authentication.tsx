@@ -4,12 +4,20 @@ interface TokenContext {
         accessToken: string,
         refreshToken: string,
 }
-export const ContextToken = createContext({})
+interface TestContext {
+        user: string,
+}
+const ContextToken = createContext({})
 
 export const AuthenticationProvider = ({ children }: { children: React.ReactNode }) => {
-        const token = getToken()
-        console.log('tokennnnnnnnnnnnnnnnnnnn', token)
-        return <ContextToken.Provider value={{ token }}>{children}</ContextToken.Provider>
+        // const [tokenContext, setTokenContext] = useState<TokenContext>()
+
+
+        const [tokenContext, setTokenContext] = useState<TokenContext>()
+
+        const [tokenLogin, setTokenLogin] = useState<TestContext>()
+
+        return <ContextToken.Provider value={{ tokenLogin, setTokenLogin, tokenContext, setTokenContext}}>{children}</ContextToken.Provider>
 
 }
 export const useAuth = () => useContext(ContextToken)

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { getToken, setToken } from "../../utils/token";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../../hook/authentication";
 
 
 interface IFormInput {
@@ -53,7 +54,7 @@ const Error = styled.p`
 `
 
 export default function LoginCrud() {
-
+  const context = useAuth()
   const [errorLoginMessage, setErrorLoginMessage] = useState<string>("")
 
   const {
@@ -66,12 +67,13 @@ export default function LoginCrud() {
     console.log('data', data)
     try {
       const token = await login(data)
-      console.log(`token`, token)
+      console.log(`token`, token.data)
       if(token.error){
         return setErrorLoginMessage(token.message)
       }
       if(token.data){
         setToken(token.data)
+        context.setTokenContext(token.data)
       }
     } catch (error) {
     }

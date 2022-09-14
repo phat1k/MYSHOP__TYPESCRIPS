@@ -1,8 +1,6 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Drawer } from "antd";
 import { currency } from '../utils/currency';
-import { ProductItem, Productt } from './ProductCard';
 import styled from 'styled-components';
 import { ItemCard } from './ItemCard';
 
@@ -13,8 +11,9 @@ const TotalPrice = styled.p`
  `
 export const ModalCard = () => {
   const dispatch = useDispatch();
-  const { opencard } = useSelector((store) => store.OpenRe);
-  const listCard = useSelector((store) => store.OpenRe.listCard);
+  const { opencard } = useSelector((store:any) => store.OpenRe);
+  const listCard = useSelector((store:any) => store.OpenRe.listCard);
+
   const onRemove = (_id: string) => {
     dispatch({
       type: "REMOVE_ITEM_MODALCARD",

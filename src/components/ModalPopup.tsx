@@ -39,8 +39,6 @@ export const ModalCard = ({ id }: { id: string }) => {
     return (
         <Modal title="Basic Modal" visible={visible} footer={null} onCancel={() => dispatch({ type: "CLOSE_CARD" })}>
             <Container className="container__button">
-                {/* {list && list.map(e=> <ProductsCard key={e} product={e}/>)} */}
-
                 <ButtonStyle onClick={removeItem}>confirm</ButtonStyle><br />
                 <ButtonStyle>cancel</ButtonStyle>
             </Container>

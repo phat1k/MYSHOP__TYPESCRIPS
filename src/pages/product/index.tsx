@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ProductsCard from "../../components/ProductCard"
 import Category from "../../components/Category"
 import { getProducts, Pagination } from "../../services/product"
@@ -15,7 +15,7 @@ export default function Shop() {
     const context = useAuth()
     const con = context
     console.log('context', con)
-    const { list } = useSelector((store) => store.OpenRe);
+    const { list } = useSelector((store: any) => store.OpenRe);
     const dispatch = useDispatch()
     const [id, setId] = useState<string>("")
     const [searchValue, setSearchValue] = useState<string>("")
