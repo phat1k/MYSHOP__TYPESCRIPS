@@ -1,6 +1,7 @@
 
 // const list = JSON.parse(localStorage.getItem("listProdct")) || [];
 
+import { useDispatch, useSelector } from "react-redux";
 import { ProductItem } from "../components/ProductCard";
 
 // const listCard = JSON.parse(localStorage.getItem("listCard")) || [];
@@ -22,6 +23,24 @@ const initialValue: UserStateRule = {
   listCard: [],
   listCardRemoveCard: []
 };
+// interface DecreaseItem{
+//   _id: string
+// }
+// const listCard = useSelector((store: any) => store.OpenRe.listCard);
+export const decreaseItemm =  (payload: string, state = initialValue) => { 
+  let { listCard } = state;
+  // const listCardRemoveCard = [...state.listCard]
+  const indexRemove = listCard?.findIndex(e => e._id === payload);
+  listCard[indexRemove].quantity = listCard[indexRemove].quantity - 1
+  if (indexRemove >= 0 && listCard[indexRemove].quantity <= 0) {
+    listCard.splice(indexRemove, 1);
+  }
+  return {
+    type: 'DECREASE_ITEM',
+    payload: listCard
+}
+
+ }
 
 function OpenCardReducer(state = initialValue, action: ActionReducer) {
   switch (action.type) {
@@ -51,15 +70,16 @@ function OpenCardReducer(state = initialValue, action: ActionReducer) {
         list: action.payload,
       };
     case "DECREASE_ITEM":
-      const listCardRemoveCard = [...state.listCard]
-      const indexRemove = listCardRemoveCard?.findIndex(e => e._id === action.payload);
-      listCardRemoveCard[indexRemove].quantity = listCardRemoveCard[indexRemove].quantity - 1
-      if (indexRemove >= 0 && listCardRemoveCard[indexRemove].quantity <= 0) {
-        listCardRemoveCard.splice(indexRemove, 1);
-      }
+      // const listCardRemoveCard = [...state.listCard]
+      // const indexRemove = listCardRemoveCard?.findIndex(e => e._id === action.payload);
+      // listCardRemoveCard[indexRemove].quantity = listCardRemoveCard[indexRemove].quantity - 1
+      // if (indexRemove >= 0 && listCardRemoveCard[indexRemove].quantity <= 0) {
+      //   listCardRemoveCard.splice(indexRemove, 1);
+      // }
       return {
         ...state,
-        listCard: listCardRemoveCard
+        // listCard: listCardRemoveCard
+        listCard: action.payload
       };
     case "INCREASE_ITEM":
       let listCardd = [...state.listCard];

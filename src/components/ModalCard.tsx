@@ -3,7 +3,7 @@ import { Drawer } from "antd";
 import { currency } from '../utils/currency';
 import styled from 'styled-components';
 import { ItemCard } from './ItemCard';
-
+import {decreaseItemm} from "../store/openReducer"
 const TotalPrice = styled.p`
   font-weight: bold;
   font-size:22px;
@@ -29,10 +29,11 @@ export const ModalCard = () => {
   }
 
   const decreaseItem = (_id: string) => {
-    dispatch({
-      type: "DECREASE_ITEM",
-      payload: _id
-    })
+    dispatch(decreaseItemm(_id))
+    // dispatch({
+    //   type: "DECREASE_ITEM",
+    //   payload: _id
+    // })
   }
   let totalPrice = 0
   let total = 0

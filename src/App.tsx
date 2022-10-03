@@ -20,6 +20,7 @@ import { AuthenticationProvider } from "./hook/authentication";
 import LoginCrud from "./pages/register";
 import { Pageerror } from "./pages/error";
 import { getToken } from "./utils/token";
+import { PrivateRote } from "./layout/PrivateRoute";
 
 // import Wishlist from "./pages/profile"
 
@@ -44,17 +45,19 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path={PRODUCT_PATH} element={<Product />} />
               <Route path={PRODUCT_CATEGORY_PATH} element={<Product />} />
-              {/* <Route path="/register" element={<LoginCrud />} /> */}
+              <Route path="/register" element={<LoginCrud />} />
               
-              {/* <Route path={PRODUCT_PATH} element={<Providerr> <Product /> </Providerr>} /> */}
-              {/* <Route path="/profile" element={<Providerr><AccountLayout /></Providerr>}> */}
-              {
-                token ?
-                  <Route path={PRODUCT_PATH} element={<Product />} /> :
-                  <Route path="/register" element={<LoginCrud />} /> 
-                }
-              
-              {/* </Route> */}
+              {/* <Route path={PRODUCT_PATH} element={<Providerr> <Product /> </Providerr>} /> 
+              <Route path="/profile" element={<Providerr><AccountLayout /></Providerr>}> */}
+
+              <Route path="" element={<PrivateRote/>}>
+
+                {/* <Route path={PRODUCT_PATH} element={<Product />} />  */}
+                <Route path="/profile" element={<AccountLayout />}/> 
+
+              </Route> 
+
+             
             </Route>
           <Route path="/404" element={<Pageerror />} />
           </Routes>
